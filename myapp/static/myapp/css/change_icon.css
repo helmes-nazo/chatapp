@@ -1,0 +1,54 @@
+.change-icon {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.preview-image {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    border: 2px solid #eaeaea;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.change-icon input[type="file"] {
+    display: none;
+}
+
+.change-icon label {
+    margin-bottom: 40px;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    color: #111;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.change-icon label:hover {
+    background-color: #f0f0f0;
+}
+
+.change-icon button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.change-icon button[type="submit"]:hover {
+    background-color: #0056b3;
+}

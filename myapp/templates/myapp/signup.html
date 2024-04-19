@@ -1,1 +1,26 @@
-SU
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/signup.css' %}">
+{% endblock %}
+
+{% block header_title %}会員登録{% endblock %}
+
+{% block content %}
+<form method="post" action="{% url 'signup' %}" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+    {% for field in form %}
+    <p>
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+            {{ field.errors }}
+        {% endif %}
+    </p>
+    {% endfor %}
+    <button type="submit" class="submit">Sign Up</button>
+</form>
+{% endblock %}
+
+{% block footer %}{% endblock %}

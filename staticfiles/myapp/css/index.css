@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.button {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 2px solid #555;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #000;
+    text-decoration: none;
+}

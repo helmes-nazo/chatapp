@@ -1,0 +1,31 @@
+.settings {
+    margin: 20px;
+}
+
+.settings__header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.settings__menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.settings__menu ul li {
+    margin-bottom: 10px;
+}
+
+.settings__menu ul li a {
+    color: #111;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.settings__menu ul li a:hover {
+    background-color: #e0e0e0;
+}

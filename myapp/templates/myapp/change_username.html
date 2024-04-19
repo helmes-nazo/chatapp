@@ -1,0 +1,21 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/change_username.css' %}">
+{% endblock %}
+
+{% block header_title %}ユーザー名変更{% endblock %}
+
+{% block content %}
+<div class="change-username">
+    <form method="post" class="username-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+        <button type="submit" class="btn btn-primary">変更する</button>
+    </form>
+</div>
+{% endblock %}

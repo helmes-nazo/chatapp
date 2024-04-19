@@ -1,1 +1,50 @@
-TR
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/talk_room.css' %}">
+{% endblock %}
+
+{% block header %}
+    <header class="header">
+        <div class="header-container">
+            <a href="{% url 'friends' %}" class="talk_room__back-btn">＜</a>
+            <a href="" class="talk_room__reload">更新</a>
+            <span class="header-container__title">
+                {{ friend }}
+            </span>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+<div class="talk_room">
+    <ul class="chatboard" id="chatboard">
+        {% for talk in talk %}
+            <li class="chatboard__content chatboard__content--{% if talk.talk_from == user %}user{% else %}friend{% endif %}">
+                <p class="chatboard__name">{{ talk.talk_from }} : {{ talk.time }}</p>
+                <p class="chatboard__text">{{ talk.talk }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form class="talk_room__sendbox" method="POST">
+        {% csrf_token %}
+        {{ form.talk }}
+        <button class="talk_room__sendbox-btn" type="submit">送信</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block extra_js %}
+<!-- 機能を載せるために不可避だったので、ここだけコピペで実装してください -->
+<script>
+    // トークの表示を新しいものを下にしているため、最下にスクロールさせる
+    document.addEventListener("DOMContentLoaded", function () {
+        const chatboard = document.getElementById("chatboard");
+        window.scroll(0, chatboard.scrollHeight);
+    });
+</script>
+{% endblock %}

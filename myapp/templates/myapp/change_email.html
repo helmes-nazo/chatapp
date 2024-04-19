@@ -1,0 +1,26 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/change_email.css' %}">
+{% endblock %}
+
+{% block header_title %}メールアドレス名変更{% endblock %}
+
+{% block content %}
+<div class="change-email">
+    <p>現在のメールアドレス: {{ user_email }}</p>
+    <form method="post" class="email-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}" class="form-label">新しいメールアドレス</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.email_confirm.id_for_label }}" class="form-label">新しいメールアドレス（確認用）</label>
+            {{ form.email_confirm }}
+        </div>
+        <button type="submit" class="btn btn-primary">変更する</button>
+    </form>
+</div>
+{% endblock %}
