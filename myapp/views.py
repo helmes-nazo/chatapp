@@ -1,5 +1,3 @@
-import operator
-
 from django.contrib import messages
 from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -12,8 +10,6 @@ from django.views import generic
 from django.views.generic import ListView
 
 from .forms import (
-    LoginForm,
-    SignUpForm,
     TalkForm,
     ChangeUsernameForm,
     ChangeEmailForm,
@@ -31,16 +27,16 @@ def index(request):
     return render(request, "myapp/index.html")
 
 
-class SignUpView(generic.CreateView):
-    form_class = SignUpForm
-    model = CustomUser
-    success_url = reverse_lazy('index')
-    template_name = 'myapp/signup.html'
+# class SignUpView(generic.CreateView):
+#     form_class = SignUpForm
+#     model = CustomUser
+#     success_url = reverse_lazy('index')
+#     template_name = 'myapp/signup.html'
 
 
-class LoginView(LoginView):
-    form_class = LoginForm
-    template_name = 'myapp/login.html'
+# class LoginView(LoginView):
+#     form_class = LoginForm
+#     template_name = 'myapp/login.html'
 
 
 # ヒント：自分以外を抜き出す→annotateでユーザーごとにTalkの最新のものをひっつける→order_byでソート

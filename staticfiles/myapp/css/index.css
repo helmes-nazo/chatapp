@@ -1,20 +1,27 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    margin-top: 100px;
+}
+
+.container h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
 }
 
 .button {
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    border: 2px solid #555;
-    background-color: #fff;
-    border-radius: 10px;
-    color: #000;
+    display: block;
+    margin: 0 auto 10px;
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
     text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
 }

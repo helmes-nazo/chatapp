@@ -1,19 +1,35 @@
-.form {
-    height: calc(96vh - 64px);
-    margin-top: 4vh;
-    padding: 0 4vw;
-    text-align: center;
+.form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form .error-message {
+    color: #ff0000;
+    margin-top: 5px;
 }
 
 .submit {
     display: block;
-    width: 30%;
-    text-align: center;
-    margin: 1rem auto;
-    padding: 2% 0%;
-    border-radius: 10px;
-    border: solid 1px #9b9b9b;
-    font-size: 1rem;
-    color: #000;
-    background-color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: #0056b3;
 }

@@ -6,19 +6,36 @@ from django.contrib.auth.forms import (
     PasswordChangeForm
 )
 
+from allauth.account.forms import SignupForm
+
 from .models import CustomUser, Talk
 
 User = get_user_model()
 
 
-class SignUpForm(UserCreationForm):
-    class Meta:
-        model = CustomUser
-        fields = ("username", "email", "password1", "password2", "icon")
+# class SignUpForm(UserCreationForm):
+#     class Meta:
+#         model = CustomUser
+#         fields = ("username", "email", "password1", "password2", "icon")
 
 
-class LoginForm(AuthenticationForm):
-    pass
+class CustomSignupForm(SignupForm):
+    icon = forms.ImageField(label='プロフィール用画像', required=False)
+
+    def save(self, request):
+        user = super(CustomSignupForm, self).save(request)
+
+        icon = self.cleaned_data.get('icon')
+        if icon:
+            user.icon = icon
+        else:
+            user.icon = 'default.jpg'
+
+        user.save()
+        return user
+
+# class LoginForm(AuthenticationForm):
+#     pass
 
 class TalkForm(forms.ModelForm):
     class Meta:

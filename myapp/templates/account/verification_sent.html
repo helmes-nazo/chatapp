@@ -1,0 +1,15 @@
+{% extends "myapp/base.html" %}
+{% load allauth i18n %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/signup.css' %}">
+{% endblock %}
+
+{% block header_title %}メールアドレスを確認してください{% endblock %}
+{% block content %}
+    <p>確認のメールを送信しました。</p>
+    <p>メールに記載されたリンクをクリックして、ユーザー登録を完了させてください。</p>
+{% endblock content %}
+
+{% block footer %}{% endblock %}

@@ -2,12 +2,31 @@ html{
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
 }
-body{
+body {
     width: 100%;
     max-width: 400px;
     margin: auto;
+    position: relative;
+    background-color: #fff;
 }
 
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: calc((100% - 400px) / 2);
+    background-color: #555;
+}
+
+body::before {
+    left: 0;
+}
+
+body::after {
+    right: 0;
+}
 /* ヘッダー */
 .header{
     width: 100%;
@@ -41,6 +60,7 @@ body{
     height: 64px;
 }
 .footer-container{
+    background-color: #fff;
     display: flex;
     position: fixed;
     bottom: 0;
@@ -59,6 +79,7 @@ body{
     text-decoration: none;
     color: #9b9b9b;
 }
+
 .footer-item__link{
     width: 90%;
     height: 100%;
