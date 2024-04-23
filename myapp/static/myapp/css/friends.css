@@ -1,3 +1,24 @@
+.friends form input[type="text"] {
+    width: calc(80% - 30px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.friends form button {
+    padding: 8px 16px;
+    width: 20%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.friends form button:hover {
+    background-color: #0056b3;
+}
+
 .talk-list {
     list-style: none;
     padding: 0;

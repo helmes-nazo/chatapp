@@ -60,7 +60,12 @@ def friends(request):
         .order_by('-latest_talk_time')
     )
 
-    return render(request, "myapp/friends.html", {"friends": friends})
+    search_query = request.GET.get('search_query')
+    if search_query:
+        friends = friends.filter(username__icontains=search_query)
+    
+    return render(request, 'myapp/friends.html', {'friends': friends})
+    
 
 class TalkRoom(LoginRequiredMixin, ListView):
     model = Talk

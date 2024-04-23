@@ -15,16 +15,19 @@ from pathlib import Path
 import os
 import environ
 
+
 # load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ozyl(r!*=wht$a7^pp+wp=zg5g96yg5wz!7fwe$gq63874z9##'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -160,12 +163,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = '/'
 
-if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
-    env = environ.Env(DEBUG=(bool, False),)
-    environ.Env.read_env('.env')
+# if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
+#     env = environ.Env(DEBUG=(bool, False),)
+#     environ.Env.read_env('.env')
 
-    DEBUG = env('DEBUG')
-    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+#     DEBUG = env('DEBUG')
+#     ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+
+ALLOWED_HOSTS=['127.0.0.1']
+
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",

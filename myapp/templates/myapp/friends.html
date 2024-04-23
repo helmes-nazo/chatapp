@@ -9,6 +9,10 @@
 
 {% block content %}
 <div class="friends">
+    <form method="GET" action="{% url 'friends' %}">
+        <input type="text" name="search_query" placeholder="Search friends...">
+        <button type="submit">Search</button>
+    </form>
     <ul class="talk-list">
         {% for friend in friends %}
         <li>
