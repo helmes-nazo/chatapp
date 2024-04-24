@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +63,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     'allauth.account.middleware.AccountMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'intern.urls'
@@ -203,3 +208,9 @@ ACCOUNT_FORMS = {
 
 #signupformからの情報をusermodelに保存するのに必要
 ACCOUNT_ADAPTER = 'myapp.adapter.AccountAdapter'
+
+INTERNAL_IPS = ['127.0.0.1']
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK" : lambda request: True,
+}

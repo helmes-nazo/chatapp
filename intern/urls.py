@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 import myapp.views as myapp
 from django.contrib.staticfiles.urls import static
+import debug_toolbar
 
 # 画像表示のためにimport
 from django.conf.urls.static import static
@@ -33,3 +34,7 @@ urlpatterns = [
 """
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+if settings.DEBUG:
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]

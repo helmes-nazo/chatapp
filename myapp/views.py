@@ -2,11 +2,9 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, LogoutView
-from django.db.models import Q, Subquery, OuterRef
+from django.contrib.auth.views import LogoutView
+from django.db.models import Q, F,  Subquery, OuterRef
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.views import generic
 from django.views.generic import ListView
 
 from .forms import (
@@ -17,7 +15,7 @@ from .forms import (
     ChangePasswordForm
 )
 
-from .models import CustomUser, Talk
+from .models import Talk
 
 
 User = get_user_model()
@@ -27,20 +25,7 @@ def index(request):
     return render(request, "myapp/index.html")
 
 
-# class SignUpView(generic.CreateView):
-#     form_class = SignUpForm
-#     model = CustomUser
-#     success_url = reverse_lazy('index')
-#     template_name = 'myapp/signup.html'
-
-
-# class LoginView(LoginView):
-#     form_class = LoginForm
-#     template_name = 'myapp/login.html'
-
-
 # ヒント：自分以外を抜き出す→annotateでユーザーごとにTalkの最新のものをひっつける→order_byでソート
-# 現在のものはorder_byを二重に用いているため計算量が多そう
 @login_required
 def friends(request):
     user = request.user    
@@ -57,12 +42,12 @@ def friends(request):
             latest_talk=Subquery(latest_messages_subquery.values('talk')),
             latest_talk_time=Subquery(latest_messages_subquery.values('time'))
         )
-        .order_by('-latest_talk_time')
+        .order_by(F("latest_talk_time").desc(nulls_last=True))
     )
 
     search_query = request.GET.get('search_query')
     if search_query:
-        friends = friends.filter(username__icontains=search_query)
+        friends = friends.filter(Q(username__icontains=search_query) | Q(email__icontains=search_query))
     
     return render(request, 'myapp/friends.html', {'friends': friends})
     

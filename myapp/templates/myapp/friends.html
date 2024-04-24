@@ -21,7 +21,7 @@
                 <div class="talk-details">
                     <span class="username">{{ friend.username }}</span>
                     {% if friend.latest_talk %}
-                    <p class="latest-message">{{ friend.latest_talk }}</p>
+                    <p class="latest-message">{{ friend.latest_talk|truncatechars:20 }}</p>
                     <p class="latest-message-time">{{ friend.latest_talk_time }}</p>
                     {% endif %}
                 </div>
