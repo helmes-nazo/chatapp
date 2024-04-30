@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from pathlib import Path
 import os
 import environ
 
 
-# load_dotenv()
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,15 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'myapp',
-
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    'debug_toolbar',
+    # 'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -159,7 +157,8 @@ STATICFILES_FINDERS = [
 
 # 画像（ユーザーアイコン）にアクセスするための指定
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -168,12 +167,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = '/'
 
-if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
-    env = environ.Env(DEBUG=(bool, False),)
-    environ.Env.read_env('.env')
+# if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
+#     env = environ.Env(DEBUG=(bool, False),)
+#     environ.Env.read_env('.env')
 
-    DEBUG = env('DEBUG')
-    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+#     DEBUG = env('DEBUG')
+#     ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 ALLOWED_HOSTS=['127.0.0.1']
 
@@ -211,8 +210,6 @@ ACCOUNT_ADAPTER = 'myapp.adapter.AccountAdapter'
 
 INTERNAL_IPS = ['127.0.0.1']
 
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK" : lambda request: True,
-}
-
-DEBUG=True
+# DEBUG_TOOLBAR_CONFIG = {
+#     "SHOW_TOOLBAR_CALLBACK" : lambda request: True,
+# }
