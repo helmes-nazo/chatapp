@@ -167,14 +167,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = '/'
 
-# if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
-#     env = environ.Env(DEBUG=(bool, False),)
-#     environ.Env.read_env('.env')
+if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
+    env = environ.Env(DEBUG=(bool, False),)
+    environ.Env.read_env('.env')
 
-#     DEBUG = env('DEBUG')
-#     ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
-
-ALLOWED_HOSTS=['127.0.0.1']
+    DEBUG = env('DEBUG')
+    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 AUTHENTICATION_BACKENDS = [
